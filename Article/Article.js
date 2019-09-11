@@ -111,7 +111,7 @@ const data = [
 //   Hint: You will need to use createElement more than once here!
 //
 //   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
-function newStory(articleData){
+function newStory (articleData){
 
   let article = document.createElement('article');
 
