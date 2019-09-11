@@ -11,6 +11,7 @@ let menuItems = [
 
 
 
+
   // Step 1: Write a function that will create a menu component as seen below:
   //
   // <div class="menu">
@@ -20,33 +21,40 @@ let menuItems = [
   // </div>
   // The function takes an array as its only argument.
 
-function navigation (navArray) {
-  let menu = document.createElement('div');
-  let menuList = document.createElement('ul');
-
   // Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array.
-
-
-
-  menuItems.forEach((i)=> {
-    let newNavItem = navigation(menuItems);
-    nav.appendChild(menuLink);
-  });
-
+  
   // Add those items to the <ul>
 
   // Step 3: Using a DOM selector, select the menu button (the element with a class of 'menu-button') currently on the DOM.
-  let menuButton = document.getElementsByClassName('menu-button');
 
-  menuButton.addEventListener('click', (event) => {
-    menuButton.classList.toggle('menu--open');
-  });
 
   // Step 4: add a click event listener to the menu button. When clicked it should toggle the class 'menu--open' on the menu (your div with a 'menu' class).
   //
   // Step 5: return the menu component.
-  return navigation;
+
   // Step 6: add the menu component to the DOM.
 
+const header = document.querySelector('div.header');
+const menuButton = document.querySelector('img.menu-button');
 
+function navigation () {
+  const menu = document.createElement('div');
+  const ul = document.createElement('ul');
+
+  menu.appendChild(ul);
+  menuItems.forEach (i => {
+    let li = document.createElement('li');
+    li.textContent = i;
+    ul.appendChild(li);
+  });
+
+  menu.classList.add('menu');
+
+  menuButton.addEventListener ('click', (event) => {
+    menu.classList.toggle('menu--open')
+  });
+
+  return menu;
 }
+
+header.appendChild(navigation());
