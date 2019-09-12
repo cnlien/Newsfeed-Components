@@ -37,9 +37,9 @@ const data = [
         mewing kittens Remus Lupin. Palominos scarlet train black robes, Metamorphimagus Niffler dead easy second bedroom. Padma
         and Parvati Sorting Hat Minister of Magic blue turban remember my last.`,
 
-    thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights 
-        Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven 
-        roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot 
+    thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights
+        Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven
+        roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
@@ -66,8 +66,8 @@ const data = [
         consectetur adipiscing elit. Nidoran Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nidorino Lorem ipsum dolor
         sit amet, consectetur adipiscing elit. Nidoking Lorem ipsum`,
 
-    thirdParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel 
-        Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James 
+    thirdParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel
+        Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
@@ -85,30 +85,78 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  },
+  {
+    title: 'Minnesota Wild Lose to Bantam Team',
+    date: 'Sept 10, 2019',
+    firstParagraph: `Clapped a rocket top cheddar. Puck luck. Ooohhh baby! Money on the board.`,
+
+    secondParagraph: `Y'know We've got to keep it simple. Like I said... Obviously uhh`,
+
+    thirdParagraph: `They work real hard. Y'know you expect to win every night. Old time hockey. Gordie Howe Hatrick.`
+  },
 ];
 
-/* Step 1: Create a function that creates a component. You will want your component to look like the template below: 
-  
-  <div class="article">
-    <h2>{title of the article}</h2>
-    <p class="date">{date of the article}</p>
+// Step 1: Create a function that creates a component. You will want your component to look like the template below:
+//
+//   <div class="article">
+//     <h2>{title of the article}</h2>
+//     <p class="date">{date of the article}</p>
+//
+//     {three separate paragraph elements}
+//
+//     <span class='expandButton'></span>
+//   </div>
 
-    {three separate paragraph elements}
+//   Hint: You will need to use createElement more than once here!
+//
+//   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+function newStory (articleData){
 
-    <span class='expandButton'></span>
-  </div>
+  let article = document.createElement('article');
 
-  Hint: You will need to use createElement more than once here!
+  let title = document.createElement('h2');
+  let date = document.createElement('p');
+  let para1 = document.createElement('p');
+  let para2 = document.createElement('p');
+  let para3 = document.createElement('p');
+  let btnOpen = document.createElement('span');
+  let btnClose = document.createElement('span');
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(btnOpen);
+  article.appendChild(btnClose);
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  title.textContent = articleData.title;
+  date.textContent = articleData.date;
+  para1.textContent = articleData.firstParagraph;
+  para2.textContent = articleData.secondParagraph;
+  para3.textContent = articleData.thirdParagraph;
+  btnOpen.textContent = 'READ MORE';
 
-  Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  article.classList.add('article');
+  title.classList.add('h2');
+  date.classList.add('date');
+  btnOpen.classList.add('expandButton');
 
-  Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
-*/
+//   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  btnOpen.addEventListener('click', (event) => {
+    article.classList.toggle('article-open')
+  });
+
+//   Step 3: return the entire component.
+  return article;
+}
+
+//   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+let articles = document.querySelector('.articles');
+data.forEach(articleData => {
+  articles.appendChild(newStory(articleData));
+})
+//   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
